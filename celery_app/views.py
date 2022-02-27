@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .task import test_celery
+from .task import test_celery, send_email
 
 # Create your views here.
 def test(request):
-    test_celery.delay()
+    send_email.delay()
     return HttpResponse("Done")

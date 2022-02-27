@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from unittest.mock import DEFAULT
+import secret_keys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-d7#fvezu1*%m5a)oqjk8s-%7mv6^h^d&gm+h#@_(dlzv9h=tyx"
+SECRET_KEY = secret_keys.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -136,3 +138,15 @@ CELERY_RESULT_BACKEND = "django-db"
 
 # Celery beat settings
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+# SMTP settings
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "frifat2013@gmail.com"
+EMAIL_HOST_PASSWORD = secret_keys.google_key
+DEFAULT_FROM_EMAIL = "Celery <frifat2013@gmail.com>"
