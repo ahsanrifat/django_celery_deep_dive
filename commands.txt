@@ -1,1 +1,2 @@
 celery -A celery_project.celery worker -l info
+celery -A celery_project beat -l info
